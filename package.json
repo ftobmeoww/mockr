@@ -1,5 +1,5 @@
 {
-  "name": "mockr",
+  "name": "mockr-cli",
   "version": "1.0.0",
   "description": "Spin up a fake REST API from a JSON config file.",
   "main": "src/server.js",

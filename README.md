@@ -3,7 +3,7 @@
 fake a REST API from a single JSON file. no backend, no setup.
 
 ```bash
-npx mockr start
+npx mockr-cli start
 ```
 
 ## usage
@@ -21,7 +21,7 @@ create `api.json` wherever you want:
 run it:
 
 ```bash
-mockr start
+mockr-cli start
 ```
 
 ```
@@ -37,15 +37,15 @@ hit your routes, get your data back. that's it.
 ## install
 
 ```bash
-npm install -g mockr
+npm install -g mockr-cli
 ```
 
-or just use `npx mockr start` without installing anything.
+or just use `npx mockr-cli start` without installing anything.
 
 ## options
 
 ```bash
-mockr start --config mocks/api.json --port 8080
+mockr-cli start --config mocks/api.json --port 8080
 ```
 
 | flag | default | what it does |
