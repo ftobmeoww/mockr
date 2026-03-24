@@ -1,14 +1,20 @@
+![npm](https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square)
+![license](https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square)
+![npm downloads](https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square)
+
 # mockr
 
-fake a REST API from a single JSON file. no backend, no setup.
+> fake a REST API from a single JSON file. no backend, no setup.
 
 ```bash
 npx mockr-cli start
 ```
 
+---
+
 ## usage
 
-create `api.json` wherever you want:
+create `api.json` in your project folder:
 
 ```json
 {
@@ -32,7 +38,9 @@ mockr running on http://localhost:3000
   POST    /login
 ```
 
-hit your routes, get your data back. that's it.
+your frontend can now fetch from `localhost:3000` as if a real backend was running.
+
+---
 
 ## install
 
@@ -40,31 +48,42 @@ hit your routes, get your data back. that's it.
 npm install -g mockr-cli
 ```
 
-or just use `npx mockr-cli start` without installing anything.
+or skip the install entirely:
+
+```bash
+npx mockr-cli start
+```
+
+---
 
 ## options
+
+| flag | default | description |
+|------|---------|-------------|
+| `--config <file>` | `api.json` | path to your config file |
+| `--port <number>` | `3000` | port to run on |
+| `--watch` | off | auto-reload when config changes |
 
 ```bash
 mockr-cli start --config mocks/api.json --port 8080 --watch
 ```
 
-| flag | default | what it does |
-|------|---------|--------------|
-| `--config` | `api.json` | path to your config file |
-| `--port` | `3000` | port to run on |
-| `--watch` | off | auto-reload when config changes |
+---
 
 ## custom status codes
 
+return any HTTP status code using `_status`:
+
 ```json
 {
-  "GET /secret": { "_status": 403, "error": "Forbidden" }
+  "GET /secret": { "_status": 403, "error": "Forbidden" },
+  "GET /crash": { "_status": 500, "error": "Internal Server Error" }
 }
 ```
 
 ## response delays
 
-simulate slow networks to test loading states:
+simulate slow networks using `_delay` (milliseconds):
 
 ```json
 {
@@ -74,18 +93,16 @@ simulate slow networks to test loading states:
 
 ## request logging
 
-every request is logged to the terminal automatically:
+every request is logged automatically:
 
 ```
   10:32:01  200  GET /users
   10:32:04  404  GET /unknown
-  10:32:09  200  POST /login  (1000ms delay)
+  10:32:09  200  GET /users  (1500ms delay)
+  10:32:11  403  GET /secret
 ```
 
-## notes
-
-- CORS is open by default, so your frontend can call it without issues
-- unknown routes return `404 { "error": "Route not found" }`
+---
 
 ## license
 
