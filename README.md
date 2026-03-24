@@ -1,10 +1,12 @@
 <p align="center">
-  <img src="./mockr.png" width="120" />
+  <img src="./mockr.png" width="110" />
 </p>
 
 <h1 align="center">mockr</h1>
 
-<p align="center">fake a REST API from a single JSON file. no backend, no setup.</p>
+<p align="center">fake a REST API from a JSON file — no backend needed</p>
+
+<br />
 
 <p align="center">
   <img src="https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square" />
@@ -12,24 +14,15 @@
   <img src="https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square" />
 </p>
 
----
+<br />
 
-> fake a REST API from a single JSON file. no backend, no setup.
+## quick start
 
-```bash
-npx mockr-cli start
-```
-
----
-
-## usage
-
-create `api.json` in your project folder:
+create `api.json` anywhere:
 
 ```json
 {
-  "GET /users": [{ "id": 1, "name": "Alice" }, { "id": 2, "name": "Bob" }],
-  "GET /users/1": { "id": 1, "name": "Alice" },
+  "GET /users": [{ "id": 1, "name": "Alice" }],
   "POST /login": { "token": "abc123" }
 }
 ```
@@ -37,83 +30,43 @@ create `api.json` in your project folder:
 run it:
 
 ```bash
-mockr-cli start
-```
-
-```
-mockr running on http://localhost:3000
-
-  GET     /users
-  GET     /users/1
-  POST    /login
-```
-
-your frontend can now fetch from `localhost:3000` as if a real backend was running.
-
----
-
-## install
-
-```bash
-npm install -g mockr-cli
-```
-
-or skip the install entirely:
-
-```bash
 npx mockr-cli start
 ```
 
----
+your site can now fetch from `http://localhost:3000`. done.
+
+<br />
 
 ## options
-
-| flag | default | description |
-|------|---------|-------------|
-| `--config <file>` | `api.json` | path to your config file |
-| `--port <number>` | `3000` | port to run on |
-| `--watch` | off | auto-reload when config changes |
 
 ```bash
 mockr-cli start --config mocks/api.json --port 8080 --watch
 ```
 
----
+| flag | default | |
+|------|---------|---|
+| `--config` | `api.json` | path to your config |
+| `--port` | `3000` | port to run on |
+| `--watch` | off | auto-reload on change |
 
-## custom status codes
+<br />
 
-return any HTTP status code using `_status`:
+## extras
 
+set a custom status code:
 ```json
-{
-  "GET /secret": { "_status": 403, "error": "Forbidden" },
-  "GET /crash": { "_status": 500, "error": "Internal Server Error" }
-}
+"GET /secret": { "_status": 403, "error": "Forbidden" }
 ```
 
-## response delays
-
-simulate slow networks using `_delay` (milliseconds):
-
+add a response delay (ms):
 ```json
-{
-  "GET /users": { "_delay": 1500, "data": [{ "id": 1, "name": "Alice" }] }
-}
+"GET /slow": { "_delay": 2000, "message": "slow response" }
 ```
 
-## request logging
+every request is logged to the terminal automatically.
 
-every request is logged automatically:
-
-```
-  10:32:01  200  GET /users
-  10:32:04  404  GET /unknown
-  10:32:09  200  GET /users  (1500ms delay)
-  10:32:11  403  GET /secret
-```
+<br />
 
 ---
 
-## license
-
-MIT — [@ftobmeoww](https://github.com/ftobmeoww)
+<p align="center">MIT · <a href="https://github.com/ftobmeoww">@ftobmeoww</a></p>
