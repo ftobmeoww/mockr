@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./mockr.png" width="110" />
+  <img src="./mockr.png" width="320" />
 </p>
 
 <h1 align="center">mockr</h1>
