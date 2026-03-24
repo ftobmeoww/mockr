@@ -1,12 +1,18 @@
 <p align="center">
-  <img src="./mockr.png" width="160" />
+  <img src="./mockr.png" width="120" />
 </p>
 
-![npm](https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square)
-![license](https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square)
-![npm downloads](https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square)
+<h1 align="center">mockr</h1>
 
-# mockr
+<p align="center">fake a REST API from a single JSON file. no backend, no setup.</p>
+
+<p align="center">
+  <img src="https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square" />
+  <img src="https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square" />
+  <img src="https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square" />
+</p>
+
+---
 
 > fake a REST API from a single JSON file. no backend, no setup.
 
