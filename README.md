@@ -1,4 +1,6 @@
-![mockr](./mockr.png)
+<p align="center">
+  <img src="./mockr.png" width="160" />
+</p>
 
 ![npm](https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square)
 ![license](https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square)
