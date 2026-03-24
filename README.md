@@ -1,3 +1,5 @@
+![mockr](./mockr.png)
+
 ![npm](https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square)
 ![license](https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square)
 ![npm downloads](https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square)
