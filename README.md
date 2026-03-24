@@ -2,8 +2,6 @@
   <img src="./mockr.png" width="320" />
 </p>
 
-<h1 align="center">mockr</h1>
-
 <p align="center">fake a REST API from a JSON file — no backend needed</p>
 
 <br />
