@@ -1,6 +1,6 @@
 {
   "name": "mockr-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Spin up a fake REST API from a JSON config file.",
   "main": "src/server.js",
   "bin": {
@@ -9,6 +9,13 @@
   "scripts": {
     "start": "node bin/cli.js"
   },
-  "keywords": ["mock", "api", "rest", "cli", "dev", "fake-server"],
+  "keywords": [
+    "mock",
+    "api",
+    "rest",
+    "cli",
+    "dev",
+    "fake-server"
+  ],
   "license": "MIT"
 }
