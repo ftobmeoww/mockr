@@ -45,13 +45,42 @@ or just use `npx mockr-cli start` without installing anything.
 ## options
 
 ```bash
-mockr-cli start --config mocks/api.json --port 8080
+mockr-cli start --config mocks/api.json --port 8080 --watch
 ```
 
 | flag | default | what it does |
 |------|---------|--------------|
 | `--config` | `api.json` | path to your config file |
 | `--port` | `3000` | port to run on |
+| `--watch` | off | auto-reload when config changes |
+
+## custom status codes
+
+```json
+{
+  "GET /secret": { "_status": 403, "error": "Forbidden" }
+}
+```
+
+## response delays
+
+simulate slow networks to test loading states:
+
+```json
+{
+  "GET /users": { "_delay": 1500, "data": [{ "id": 1, "name": "Alice" }] }
+}
+```
+
+## request logging
+
+every request is logged to the terminal automatically:
+
+```
+  10:32:01  200  GET /users
+  10:32:04  404  GET /unknown
+  10:32:09  200  POST /login  (1000ms delay)
+```
 
 ## notes
 
