@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mockr — documentation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1a1a1a;
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    nav .brand { font-weight: 700; font-size: 0.95rem; text-decoration: none; color: #e0e0e0; }
+    nav .nav-links { display: flex; gap: 24px; align-items: center; }
+    nav .nav-links a { color: #444; text-decoration: none; font-size: 0.85rem; transition: color 0.15s; display: flex; align-items: center; }
+    nav .nav-links a:hover { color: #ccc; }
+    nav .nav-links a.active { color: #e0e0e0; }
+    nav .nav-links a svg { fill: #444; transition: fill 0.15s; }
+    nav .nav-links a:hover svg { fill: #e0e0e0; }
+
+    .layout { display: flex; flex: 1; }
+
+    aside {
+      width: 240px;
+      border-right: 1px solid #1a1a1a;
+      padding: 28px 0;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-group { margin-bottom: 24px; }
+
+    .sidebar-group-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #2a2a2a;
+      padding: 0 24px;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-link {
+      display: block;
+      padding: 7px 24px;
+      font-size: 0.82rem;
+      color: #444;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .sidebar-link:hover { color: #999; }
+    .sidebar-link.active { color: #e0e0e0; border-left-color: #555; background: #111; }
+
+    .content {
+      flex: 1;
+      padding: 56px 72px;
+      max-width: 860px;
+    }
+
+    /* welcome */
+    .welcome {
+      margin-bottom: 72px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .welcome .eyebrow {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    .welcome h1 {
+      font-size: 2.2rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, #fff 50%, #555);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .welcome p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 28px;
+    }
+
+    .welcome-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .welcome-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 16px;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .welcome-card:hover { border-color: #333; }
+    .welcome-card .wc-title { font-size: 0.85rem; font-weight: 600; color: #ccc; margin-bottom: 4px; }
+    .welcome-card .wc-desc { font-size: 0.75rem; color: #444; line-height: 1.5; }
+    .welcome-card .wc-arrow { font-size: 0.75rem; color: #333; margin-top: 10px; }
+
+    /* sections */
+    .doc-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 72px;
+    }
+
+    .doc-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .doc-section .section-sub {
+      font-size: 0.85rem;
+      color: #444;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #141414;
+    }
+
+    .doc-section h3 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #aaa;
+      margin: 28px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+    }
+
+    .doc-section p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .code-block {
+      margin-bottom: 16px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1e1e1e;
+    }
+
+    .code-block .code-header {
+      background: #111;
+      padding: 8px 16px;
+      font-size: 0.7rem;
+      color: #333;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-block .code-header .dot { width: 6px; height: 6px; border-radius: 50%; background: #2a2a2a; }
+
+    .code-block pre {
+      background: #0d0d0d;
+      padding: 18px 20px;
+      font-size: 0.8rem;
+      overflow-x: auto;
+      color: #777;
+      line-height: 1.7;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+    }
+
+    pre {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 18px 20px;
+      font-size: 0.8rem;
+      overflow-x: auto;
+      color: #777;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    code {
+      background: #161616;
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.78rem;
+      color: #bbb;
+      font-family: monospace;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.83rem; margin-bottom: 16px; }
+    th { text-align: left; padding: 10px 14px; color: #2a2a2a; font-weight: 500; border-bottom: 1px solid #1a1a1a; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    td { padding: 10px 14px; border-bottom: 1px solid #0f0f0f; color: #555; vertical-align: top; line-height: 1.6; }
+    td:first-child { color: #bbb; font-family: monospace; font-size: 0.78rem; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+
+    .note {
+      background: #0f0f0f;
+      border: 1px solid #1e1e1e;
+      border-left: 2px solid #2a2a2a;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: #444;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .step-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 16px; }
+
+    .step { display: flex; gap: 20px; }
+
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #111;
+      border: 1px solid #222;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      color: #444;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-family: monospace;
+    }
+
+    .step-body { flex: 1; }
+    .step-body .step-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 8px; color: #ccc; }
+    .step-body p { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">mockr</a>
+  <div class="nav-links">
+    <a href="https://www.npmjs.com/package/mockr-cli" target="_blank" title="npm" aria-label="npm">
+      <svg width="20" height="20" viewBox="0 46 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2,15V29.7H14.2v2.5H24V29.7H46V15ZM14.2,27.2H11.8V19.9H9.3v7.3H4.5V17.5h9.7Zm12.3,0H21.6v2.5H16.7V17.5h9.8Zm17.1,0H41.2V19.9H38.7v7.3H36.2V19.9H33.8v7.3H28.9V17.5H43.6Z"/>
+      </svg>
+    </a>
+    <a href="https://github.com/ftobmeoww/mockr" target="_blank" title="GitHub" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="84 7399 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">overview</div>
+      <a class="sidebar-link active" href="#welcome">introduction</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">getting started</div>
+      <a class="sidebar-link" href="#installation">installation</a>
+      <a class="sidebar-link" href="#quickstart">quick start</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">configuration</div>
+      <a class="sidebar-link" href="#config">api.json format</a>
+      <a class="sidebar-link" href="#options">cli options</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">features</div>
+      <a class="sidebar-link" href="#status-codes">status codes</a>
+      <a class="sidebar-link" href="#delays">response delays</a>
+      <a class="sidebar-link" href="#watch">watch mode</a>
+      <a class="sidebar-link" href="#logging">request logging</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">reference</div>
+      <a class="sidebar-link" href="#examples">examples</a>
+    </div>
+  </aside>
+
+  <div class="content">
+
+    <div class="doc-section welcome" id="welcome">
+      <div class="eyebrow">mockr documentation</div>
+      <h1>introduction</h1>
+      <p>mockr is a CLI tool that spins up a fake REST API from a JSON config file. no backend, no setup — just define your endpoints and start building.</p>
+      <div class="welcome-cards">
+        <a class="welcome-card" href="#quickstart">
+          <div class="wc-title">quick start</div>
+          <div class="wc-desc">get mockr running in under a minute</div>
+          <div class="wc-arrow">→</div>
+        </a>
+        <a class="welcome-card" href="#config">
+          <div class="wc-title">configuration</div>
+          <div class="wc-desc">learn the api.json format</div>
+          <div class="wc-arrow">→</div>
+        </a>
+        <a class="welcome-card" href="#examples">
+          <div class="wc-title">examples</div>
+          <div class="wc-desc">copy-paste ready configs</div>
+          <div class="wc-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="doc-section" id="installation">
+      <h2>installation</h2>
+      <div class="section-sub">mockr requires Node.js v14 or higher.</div>
+
+      <h3>use without installing</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+        <pre>npx mockr-cli start</pre>
+      </div>
+
+      <h3>install globally</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+        <pre>npm install -g mockr-cli</pre>
+      </div>
+      <p>once installed globally, run <code>mockr-cli start</code> from any folder.</p>
+    </div>
+
+    <div class="doc-section" id="quickstart">
+      <h2>quick start</h2>
+      <div class="section-sub">up and running in 4 steps.</div>
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">create a project folder</div>
+            <div class="code-block">
+              <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+              <pre>mkdir my-app
+cd my-app</pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">create api.json</div>
+            <div class="code-block">
+              <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+              <pre>{
+  "GET /users": [{ "id": 1, "name": "Alice" }, { "id": 2, "name": "Bob" }],
+  "POST /login": { "token": "abc123" }
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">start mockr</div>
+            <div class="code-block">
+              <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+              <pre>npx mockr-cli start</pre>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">fetch from your frontend</div>
+            <div class="code-block">
+              <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> javascript</div>
+              <pre>fetch("http://localhost:3000/users")
+  .then(res => res.json())
+  .then(data => console.log(data))</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section" id="config">
+      <h2>api.json format</h2>
+      <div class="section-sub">each key is a route, each value is the response.</div>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /users": [...],
+  "GET /users/1": {...},
+  "POST /login": {...},
+  "DELETE /users/1": { "success": true }
+}</pre>
+      </div>
+      <p>supported methods: <code>GET</code> <code>POST</code> <code>PUT</code> <code>PATCH</code> <code>DELETE</code></p>
+      <div class="note">the config file defaults to <code>api.json</code> in the current directory. use <code>--config</code> to point to a different file.</div>
+    </div>
+
+    <div class="doc-section" id="options">
+      <h2>cli options</h2>
+      <div class="section-sub">all flags are optional.</div>
+      <table>
+        <thead><tr><th>flag</th><th>default</th><th>description</th></tr></thead>
+        <tbody>
+          <tr><td>--config &lt;file&gt;</td><td>api.json</td><td>path to your config file</td></tr>
+          <tr><td>--port &lt;number&gt;</td><td>3000</td><td>port to run the server on</td></tr>
+          <tr><td>--watch</td><td>off</td><td>auto-reload when the config file changes</td></tr>
+        </tbody>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+        <pre>mockr-cli start --config mocks/api.json --port 8080 --watch</pre>
+      </div>
+    </div>
+
+    <div class="doc-section" id="status-codes">
+      <h2>status codes</h2>
+      <div class="section-sub">return any HTTP status code using <code>_status</code>.</div>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /secret": { "_status": 403, "error": "Forbidden" },
+  "GET /crash":  { "_status": 500, "error": "Internal Server Error" }
+}</pre>
+      </div>
+      <div class="note">fields starting with <code>_</code> are reserved for mockr and won't appear in the response body.</div>
+    </div>
+
+    <div class="doc-section" id="delays">
+      <h2>response delays</h2>
+      <div class="section-sub">simulate slow networks using <code>_delay</code> (milliseconds).</div>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /users": { "_delay": 1500, "data": [{ "id": 1, "name": "Alice" }] }
+}</pre>
+      </div>
+      <p>you can combine <code>_delay</code> and <code>_status</code>:</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /slow-error": { "_delay": 2000, "_status": 503, "error": "Service Unavailable" }
+}</pre>
+      </div>
+    </div>
+
+    <div class="doc-section" id="watch">
+      <h2>watch mode</h2>
+      <div class="section-sub">auto-reload on config changes.</div>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal</div>
+        <pre>mockr-cli start --watch</pre>
+      </div>
+      <p>when you save your config file, mockr reloads automatically — no restart needed.</p>
+    </div>
+
+    <div class="doc-section" id="logging">
+      <h2>request logging</h2>
+      <div class="section-sub">every request is logged automatically.</div>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> terminal output</div>
+        <pre>  10:32:01  200  GET /users
+  10:32:04  404  GET /unknown
+  10:32:09  200  GET /users  (1500ms delay)
+  10:32:11  403  GET /secret</pre>
+      </div>
+    </div>
+
+    <div class="doc-section" id="examples">
+      <h2>examples</h2>
+      <div class="section-sub">copy-paste ready configs.</div>
+
+      <h3>basic REST API</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /posts": [
+    { "id": 1, "title": "Hello World", "author": "Alice" },
+    { "id": 2, "title": "Second Post", "author": "Bob" }
+  ],
+  "GET /posts/1": { "id": 1, "title": "Hello World", "body": "...", "author": "Alice" },
+  "POST /posts": { "id": 3, "message": "created" },
+  "DELETE /posts/1": { "success": true }
+}</pre>
+      </div>
+
+      <h3>auth flow</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "POST /login": { "token": "eyJhbGciOiJIUzI1NiJ9", "expires": 3600 },
+  "GET /me": { "id": 1, "name": "Alice", "email": "alice@example.com" },
+  "POST /logout": { "success": true }
+}</pre>
+      </div>
+
+      <h3>error handling</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div> api.json</div>
+        <pre>{
+  "GET /admin": { "_status": 403, "error": "Forbidden" },
+  "GET /timeout": { "_delay": 5000, "_status": 408, "error": "Request Timeout" },
+  "GET /server-error": { "_status": 500, "error": "Something went wrong" }
+}</pre>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar-link');
+  const sections = document.querySelectorAll('.doc-section');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
