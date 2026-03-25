@@ -4,14 +4,14 @@
 
 <p align="center">fake a REST API from a JSON file — no backend needed</p>
 
-<p align="center">→ <a href="https://ftobmeoww.github.io/mockr/">full docs</a></p>
+<p align="center">→ <a href="https://ftobmeoww.github.io/mockr/">docs</a></p>
 
 <br />
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/mockr-cli?color=white&style=flat-square" />
-  <img src="https://img.shields.io/npm/l/mockr-cli?color=white&style=flat-square" />
-  <img src="https://img.shields.io/npm/dm/mockr-cli?color=white&style=flat-square" />
+  <img src="https://img.shields.io/npm/v/mockr-cli?style=for-the-badge&logo=npm&logoColor=white&color=18181b&labelColor=27272a" />
+  <img src="https://img.shields.io/npm/dm/mockr-cli?style=for-the-badge&logo=npm&logoColor=white&color=18181b&labelColor=27272a&label=downloads" />
+  <img src="https://img.shields.io/npm/l/mockr-cli?style=for-the-badge&color=18181b&labelColor=27272a" />
 </p>
 
 <br />
