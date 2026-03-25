@@ -40,4 +40,52 @@
          <loc>https://ftobmeoww.github.io/mockr/watch-mode/</loc>
          <lastmod>2026-03-25</lastmod>
     </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/api-json/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/cli-options/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/delays/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/examples/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/installation/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/logging/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/quick-start/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/random-responses/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/route-params/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/status-codes/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
+    <url>
+         <loc>https://ftobmeoww.github.io/mockr/docs/watch-mode/</loc>
+         <lastmod>2026-03-25</lastmod>
+    </url>
 </urlset>
