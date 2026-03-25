@@ -7,7 +7,6 @@ const { execSync } = require("child_process");
 const args = process.argv.slice(2);
 const cmd = args[0];
 
-// ── init ──────────────────────────────────────────────────────────────────────
 if (cmd === "init") {
   const target = path.resolve(process.cwd(), "api.json");
   if (fs.existsSync(target)) {
@@ -30,7 +29,6 @@ if (cmd === "init") {
   process.exit(0);
 }
 
-// ── update ────────────────────────────────────────────────────────────────────
 if (cmd === "update") {
   console.log("\nupdating mockr-cli...\n");
   try {
@@ -42,7 +40,6 @@ if (cmd === "update") {
   process.exit(0);
 }
 
-// ── start ─────────────────────────────────────────────────────────────────────
 if (cmd !== "start") {
   console.log(`
   mockr-cli — fake a REST API from a JSON file

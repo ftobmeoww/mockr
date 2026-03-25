@@ -1,11 +1,9 @@
 const http = require("http");
 
 function matchRoute(routes, method, url) {
-  // exact match first
   const exact = routes.find(r => r.method === method && r.path === url);
   if (exact) return { route: exact, params: {} };
 
-  // param match e.g. /users/:id
   for (const r of routes) {
     if (r.method !== method) continue;
     const routeParts = r.path.split("/");
@@ -21,15 +19,9 @@ function matchRoute(routes, method, url) {
   return null;
 }
 
-function resolveBody(body, params) {
-  // randomization — if body is an array with _random flag, pick one
-  if (Array.isArray(body) && body._random) {
-    return body[Math.floor(Math.random() * body.length)];
-  }
-  // if body has _random array, pick from it
+function resolveBody(body) {
   if (body && body._random && Array.isArray(body._random)) {
-    const picked = body._random[Math.floor(Math.random() * body._random.length)];
-    return picked;
+    return body._random[Math.floor(Math.random() * body._random.length)];
   }
   return body;
 }
@@ -58,15 +50,13 @@ function createServer(routes, port) {
     }
 
     const { route, params } = result;
-    let body = resolveBody(route.body, params);
-
+    const body = resolveBody(route.body);
     const status = body && body._status ? body._status : 200;
     const delay = body && body._delay ? body._delay : 0;
     const payload = (body && (body._status || body._delay))
       ? Object.fromEntries(Object.entries(body).filter(([k]) => !k.startsWith("_")))
       : body;
 
-    // inject params into response if payload is an object
     const finalPayload = (payload && typeof payload === "object" && !Array.isArray(payload))
       ? { ...payload, ...Object.keys(params).length ? { params } : {} }
       : payload;
