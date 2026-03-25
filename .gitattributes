@@ -1,0 +1,4 @@
+mockr-docs/ linguist-documentation
+docs/ linguist-documentation
+*.css linguist-documentation
+*.html linguist-documentation
