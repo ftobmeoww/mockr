@@ -1,0 +1,92 @@
+site_name: mockr
+site_url: https://ftobmeoww.github.io/mockr/
+site_description: fake a REST API from a JSON file — no backend needed
+repo_url: https://github.com/ftobmeoww/mockr
+repo_name: ftobmeoww/mockr
+
+copyright: "© 2025 ftobmeoww — All Rights Reserved."
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: mockr-light
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - navigation.footer
+  logo: mockr.png
+  favicon: mockr.png
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/npm
+      link: https://www.npmjs.com/package/mockr-cli
+      name: mockr-cli on npm
+    - icon: fontawesome/brands/github
+      link: https://github.com/ftobmeoww/mockr
+      name: mockr on GitHub
+  analytics:
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback!
+
+nav:
+  - Introduction:
+    - What is mockr?: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Quick start: quick-start.md
+  - Configuration:
+    - api.json format: api-json.md
+    - CLI options: cli-options.md
+  - Features:
+    - Status codes: status-codes.md
+    - Response delays: delays.md
+    - Watch mode: watch-mode.md
+    - Request logging: logging.md
+  - Reference:
+    - Examples: examples.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
