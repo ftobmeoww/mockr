@@ -1,3 +1,7 @@
-mockr.png
 demo/
 challenge/
+docs/
+mockr-docs/
+docs2/
+*.md
+!README.md
