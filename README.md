@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./mockr.png" width="320" />
+  <img src="./mockr.png" width="150" />
 </p>
 
 <p align="center">fake a REST API from a JSON file — no backend needed</p>
