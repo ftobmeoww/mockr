@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./mockr.png" width="150" />
+  <img src="./mockr.png" width="140" />
 </p>
 
 <p align="center">fake a REST API from a JSON file — no backend needed</p>
@@ -9,9 +9,9 @@
 <br />
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/mockr-cli?style=for-the-badge&logo=npm&logoColor=white&color=18181b&labelColor=27272a" />
-  <img src="https://img.shields.io/npm/dm/mockr-cli?style=for-the-badge&logo=npm&logoColor=white&color=18181b&labelColor=27272a&label=downloads" />
-  <img src="https://img.shields.io/npm/l/mockr-cli?style=for-the-badge&color=18181b&labelColor=27272a" />
+  <a href="https://www.npmjs.com/package/mockr-cli"><img src="https://img.shields.io/npm/v/mockr-cli?style=plastic&logo=npm&logoColor=fff&color=CB3837&label=version" /></a>
+  <a href="https://www.npmjs.com/package/mockr-cli"><img src="https://img.shields.io/npm/dm/mockr-cli?style=plastic&logo=npm&logoColor=fff&color=CB3837&label=downloads/month" /></a>
+  <img src="https://img.shields.io/npm/l/mockr-cli?style=plastic&color=555&label=license" />
 </p>
 
 <br />
