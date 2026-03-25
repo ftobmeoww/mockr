@@ -70,6 +70,8 @@ nav:
     - Response delays: delays.md
     - Watch mode: watch-mode.md
     - Request logging: logging.md
+    - Route params: route-params.md
+    - Random responses: random-responses.md
   - Reference:
     - Examples: examples.md
 
