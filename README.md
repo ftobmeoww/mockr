@@ -4,7 +4,7 @@
 
 <p align="center">fake a REST API from a JSON file — no backend needed</p>
 
-<p align="center">→ <a href="https://ftobmeoww.github.io/mockr/">docs</a></p>
+<p align="center"><a href="https://ftobmeoww.github.io/mockr/"><img src="https://img.shields.io/badge/docs-ftobmeoww.github.io/mockr-5eead4?style=plastic&logo=gitbook&logoColor=fff" /></a></p>
 
 <br />
 
